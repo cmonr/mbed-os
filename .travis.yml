@@ -30,7 +30,7 @@ before_install:
   - sudo ln -s $HOME/.cache/apt /var/cache/apt/archives
   # Setup ppa to make sure arm-none-eabi-gcc is correct version
   - sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa
-  - sudo sed 's_us.archive.ubuntu.com_mirror.nodesdirect.com_'
+  - sudo sed 's_us.archive.ubuntu.com_mirror.nodesdirect.com_' -i /etc/apt/sources.list
   - sudo apt-get update -qq
 
 after_success:
