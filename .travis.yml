@@ -254,4 +254,9 @@ matrix:
     - env:
         -     NAME=license_check
       script:
-        - if [[ ! -z $(git grep --ignore-case "GNU General Public License") ]]; then exit 1; fi
+        - |
+          FILES=$(git grep --ignore-case "GNU General Public License")
+          if [[ ! -z $FILES ]]; then
+            echo -e "${FILES}"
+            exit 1
+          fi
