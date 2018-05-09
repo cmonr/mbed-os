@@ -250,3 +250,8 @@ matrix:
       script:
         # Check that no changes after clone. This check that .gitattributes is used right way.
         - git diff --exit-code
+
+    - env:
+        -     NAME=license_check
+      script:
+        - if [[ ! -z $(git grep --ignore-case "GNU General Public License") ]]; then exit 1; fi
