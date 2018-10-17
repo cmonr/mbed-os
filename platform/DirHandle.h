@@ -120,7 +120,7 @@ public:
         return close();
     };
 
-    /** Return the directory entry at the current position, and
+    /** Returns the directory entry at the current position, and
      *  advances the position to the next entry.
      *
      * @returns
