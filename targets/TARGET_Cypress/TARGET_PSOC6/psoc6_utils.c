@@ -155,7 +155,7 @@ int cy_reserve_io_pin(PinName pin_name)
     uint32_t port = CY_PORT(pin_name);
     uint32_t pin = CY_PIN(pin_name);
     int result = (-1);
-SRM_PORT
+
     if ((port < CY_NUM_PSOC6_PORTS) && (pin <= 7)) {
         core_util_critical_section_enter();
         if (!(port_reservations[port] & (1 << pin))) {

@@ -101,7 +101,7 @@ def find_cm0_image(toolchain, resources, elf, hexf):
     m0hexf = next((f for f in hex_files if os.path.basename(f) == toolchain.target.m0_core_img), None)
 
     if m0hexf:
-        toolchain.notify.info("M0 core image file found %s." % os.path.basename(m0hexf))
+        toolchain.notify.debug("M0 core image file found %s." % os.path.basename(m0hexf))
     else:
         toolchain.notify.debug("M0 core hex image file %s not found. Aborting." % toolchain.target.m0_core_img)
         raise ConfigException("Required M0 core hex image not found.")
