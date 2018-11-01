@@ -8,7 +8,7 @@
 * \copyright
 * Copyright 2016-2018, Cypress Semiconductor Corporation.  All rights reserved.
 * Copyright 2017-2018, Future Electronics
- */* SPDX-License-Identifier: Apache-2.0
+* SPDX-License-Identifier: Apache-2.0
 *******************************************************************************/
 
 #include <stdint.h>
