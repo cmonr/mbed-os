@@ -261,6 +261,12 @@ matrix:
         - bash -c "$STATUS" success "$STATUSM"
 
     - env:
+        - NAME:=test
+      script:
+        - grep -r '^\#include.*mbed.h"$'  | cut -d':' -f1
+
+
+    - env:
         - NAME=gitattributestest
       script:
         # Check that no changes after clone. This check that .gitattributes is used right way.
