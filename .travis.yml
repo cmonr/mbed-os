@@ -21,10 +21,11 @@ matrix:
     
     ### Linux ###
     - env: NAME=linux/py27
-      python: 2.7
-      os: linux
-      dist: xenial
-      language: python
+      - 
+        - python: 2.7
+        - os: linux
+        - dist: xenial
+        - language: python
       install: 
         # Install and update python dependencies
         - python --version
