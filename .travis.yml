@@ -22,17 +22,24 @@ matrix:
     - &tools-pytest
       env: NAME=tools-linux/py2.7
       python: 2.7
+      language: python
       os: linux
       install:
         # Install dependencies
-        #- sudo apt-get install gcc-arm-embedded
-        - sudo python -m  pip install --upgrade pip
+        - python --version
+        - python -m pip install --upgrade pip
+        - |-
+          tr -d ' ' >> requirements.txt <<< "
+          mock==2.0.0
+          pytest==3.3.0
+          pylint>=1.9,<2
+          hypothesis>=3,<4
+          coverage>=4.5,<5
+          coveralls>=1.5,<2
+          "
         - pip install -r requirements.txt
-        - pip install pytest pylint hypothesis mock coverage coveralls
 
         # Print versions we use
-        - arm-none-eabi-gcc --version || true
-        - python --version
         - pip list --verbose
       script:
         # Run local testing on tools
