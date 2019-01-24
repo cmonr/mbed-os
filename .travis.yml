@@ -19,13 +19,10 @@ language: bash
 matrix:
   include:
     
-    - &tools-pytest
-      env: NAME=tools-linux/py2.7
-      python: 2.7
-      language: python
-      os: linux
+    - &pytest
+      env: NAME=changeme
       install:
-        # Install dependencies
+        # Install and update python dependencies
         - python --version
         - python -m pip install --upgrade pip
         - |-
@@ -38,43 +35,60 @@ matrix:
           coveralls>=1.5,<2
           "
         - pip install -r requirements.txt
-
-        # Print versions we use
         - pip list --verbose
       script:
-        # Run local testing on tools
         - PYTHONPATH=. coverage run -a -m pytest tools/test
         - python tools/test/pylint.py
-        - coverage run -a tools/project.py -S | sed -n '/^Total/p'
-        - coverage html
+          #- coverage run -a tools/project.py -S | sed -n '/^Total/p'
+          # - coverage html
 
-    - env: NAME=tools-windows/py2.7
-      language: sh
+    ### Linux ###
+    - <<: *pytest
+      env: NAME=linux/py27
+      os: linux
+      python: 2.7
+      language: python
+
+    - <<: *pytest
+      env: NAME=linux/py36
+      os: linux
+      python: 3.6
+      language: python
+
+    - <<: *pytest
+      env: NAME=linux/py37
+      os: linux
+      python: 3.7
+      language: python
+
+    ### Windows ###
+    - <<: *pytest
+      env: NAME=windows/py27
       os: windows
-      script:
-        - choco install python2 --version 2.7.15
-        - echo "$PATH"
-        - which python || true
-        - py || true
+      before_script:
+        - choco install python --version 2.7.15 || true
+        - choco install python2 --version 2.7.15 || true
         - python2 --version || true
-
-    - env: NAME=tools-windows/py3.6
-      language: sh
-      os: windows
-      script:
-        - choco install python --version 3.6.8
-        - echo "$PATH"
-        - which python || true
-        - py --version || true
         - python3 --version || true
+        - python --version || true
 
-    - env: NAME=tools-windows/py3.7
-      language: sh
+    - <<: *pytest
+      env: NAME=windows/py36
       os: windows
-      script:
-        - choco install python --version 3.7
-        - echo "$PATH"
-        - which python || true
-        - py --version || true
+      before_script:
+        - choco install python --version 3.6.18 || true
+        - choco install python3 --version 3.6.18 || true
+        - python2 --version || true
         - python3 --version || true
+        - python --version || true
 
+    - <<: *pytest
+      env: NAME=windows/py37
+      os: windows
+      before_script:
+        - choco install python --version 3.7.2 || true
+        - choco install python3 --version 3.7.2 || true
+        - python2 --version || true
+        - python3 --version || true
+        - python --version || true
+    
