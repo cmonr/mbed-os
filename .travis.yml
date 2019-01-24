@@ -54,8 +54,9 @@ matrix:
       script:
         - choco install python2 --version 2.7.15
         - echo "$PATH"
-        - which python
-        - python2 --version
+        - which python || true
+        - py || true
+        - python2 --version || true
 
     - env: NAME=tools-windows/py3.6
       language: sh
@@ -63,6 +64,17 @@ matrix:
       script:
         - choco install python --version 3.6.8
         - echo "$PATH"
-        - which python
-        - python3 --version
+        - which python || true
+        - py --version || true
+        - python3 --version || true
+
+    - env: NAME=tools-windows/py3.7
+      language: sh
+      os: windows
+      script:
+        - choco install python --version 3.7
+        - echo "$PATH"
+        - which python || true
+        - py --version || true
+        - python3 --version || true
 
