@@ -22,10 +22,9 @@ matrix:
     ### Linux ###
     - env: NAME=linux/py27
       python: 2.7
-      - &linux-vm
-        os: linux
-        dist: xenial
-        language: python
+      os: linux
+      dist: xenial
+      language: python
       install: 
         # Install and update python dependencies
         - python --version
@@ -47,7 +46,7 @@ matrix:
           # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
           # - coverage html
 
-    - env: NAME=linux/py36
-      python: 3.6
-      *linux-vm
+          #- env: NAME=linux/py36
+          #     pyth#on: 3.6
+          #     *linux-vm
 
