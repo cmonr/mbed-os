@@ -23,7 +23,7 @@ matrix:
     - &pytest
       env: NAME=linux/py27
       os: linux
-      python: 2.7
+      python: 2.7.15
       language: python
       install:
         # Install and update python dependencies
@@ -49,13 +49,13 @@ matrix:
     - <<: *pytest
       env: NAME=linux/py36
       os: linux
-      python: 3.6
+      python: 3.6.8
       language: python
 
     - <<: *pytest
       env: NAME=linux/py37
       os: linux
-      python: 3.7
+      python: 3.7.2
       language: python
 
     ### Windows ###
