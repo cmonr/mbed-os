@@ -45,6 +45,13 @@ matrix:
       language: sh
       os: windows
       script:
-        - curl https://www.python.org/ftp/python/2.7.15/python-2.7.15.amd64.msi > py27.msi
-        - msiexec /a py27.msi /passive /qn /norestart /log install.log 
+        - choco install python2
         - python --version
+
+    - env: NAME=tools-windows/py3.6
+      language: sh
+      os: windows
+      script:
+        - choco install python --version 3.6.8
+        - python --version
+
