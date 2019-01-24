@@ -61,7 +61,7 @@ matrix:
     - &windows-vm
       name: windows/py27
       os: windows
-      env: py_ver=2.7.15 py_pkg_name=python2 py_path="C:\Python27"
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="C:/Python27"
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH="${py_path}:${PATH}"
@@ -70,9 +70,9 @@ matrix:
 
     - <<: *windows-vm
       name: windows/py36
-      env: py_ver=3.6.8 py_pkg_name=python3 py_path="C:\Python36"
+      env: py_ver=3.6.8 py_pkg_name=python3 py_path="C:/Python36"
 
     - <<: *windows-vm
       name: windows/py37
-      env: py_ver=3.7.2 py_pkg_name=python3 py_path="C:\Python37"
+      env: py_ver=3.7.2 py_pkg_name=python3 py_path="C:/Python37"
 
