@@ -52,7 +52,7 @@ matrix:
       language: sh
       os: windows
       script:
-        - choco install python2
+        - choco install python2 --version 2.7.15
         - echo "$PATH"
         - which python
         - python2 --version
