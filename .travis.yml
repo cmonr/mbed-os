@@ -70,8 +70,12 @@ matrix:
         - ls -al ${py_path}/scripts
         - echo "${PATH}"
         - pip.exe --version || true
+        - pip --version || true
         - export pip="${py_path}/scripts/pip.exe"
         - pip.exe --version || true
+        - pip --version || true
+      install: python --version
+      script: echo "pass"
 
     - <<: *windows-vm
       name: windows/py36
