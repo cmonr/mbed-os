@@ -45,9 +45,17 @@ matrix:
   include:
     
     ### Linux ###
-    - env: NAME=linux/py27
+    - &linux-vm
+      env: NAME=linux/py27 
       python: 2.7
+      language: python
       os: linux
       dist: xenial
-      language: python
-      
+
+    - <<: *linux-vm
+      env: NAME=linux/py36
+      python: 3.6
+
+    - <<: *linux-vm
+      env: NAME=linux/py37
+      python: 3.7
