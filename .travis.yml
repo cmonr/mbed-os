@@ -66,7 +66,7 @@ matrix:
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="C:/Python27"
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
-        - export PATH=${PATH}:"${py_path}:${py_path}/Scripts/"
+        - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
         - ls -al "${py_path}"
         - ls -al "${py_path}/Scripts"
       install: 
