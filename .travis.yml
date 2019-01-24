@@ -66,13 +66,14 @@ matrix:
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="C:/Python27"
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
-        - export PATH="${py_path}:${py_path}/scripts/:${PATH}"
+        - export PATH="${py_path}:${py_path}/Scripts/:${PATH}"
         - export python="${py_path}/${py_pkg_name}.exe"
         - echo "${PATH}"
         - env
+        - pip --version || true
         - export pip="${py_path}/scripts/pip.exe"
       install: 
-        -python --version
+        - python --version
         - pip --version
       script: echo "pass"
 
