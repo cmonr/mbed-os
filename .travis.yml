@@ -20,50 +20,46 @@ matrix:
   include:
     
     ### Linux ###
-    - &pytest
-      env: NAME=linux/py27
-      os: linux
-      dist: xenial
+    - env: NAME=linux/py27
+      - &linux-vm
+        os: linux
+        dist: xenial
+        language: python
       python: 2.7
-      language: python
-      install:
-        # Install and update python dependencies
-        - python --version
-        - python -m pip install --upgrade pip
-        - |-
-          tr -d ' ' >> requirements.txt <<< "
-          mock==2.0.0
-          pytest==3.3.0
-          pylint>=1.9,<2
-          hypothesis>=3,<4
-          coverage>=4.5,<5
-          coveralls>=1.5,<2
-          "
-        - pip install -r requirements.txt
-        - pip list --verbose
-      script:
-        - PYTHONPATH=. coverage run -a -m pytest tools/test
-        - python tools/test/pylint.py
-          # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
-          # - coverage html
+      - &test-job
+        install:
+          # Install and update python dependencies
+          - python --version
+          - python -m pip install --upgrade pip
+          - |-
+            tr -d ' ' >> requirements.txt <<< "
+            mock==2.0.0
+            pytest==3.3.0
+            pylint>=1.9,<2
+            hypothesis>=3,<4
+            coverage>=4.5,<5
+            coveralls>=1.5,<2
+            "
+          - pip install -r requirements.txt
+          - pip list --verbose
+        script:
+          - PYTHONPATH=. coverage run -a -m pytest tools/test
+          - python tools/test/pylint.py
+            # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
+            # - coverage html
 
-    - <<: *pytest
-      env: NAME=linux/py36
-      os: linux
-      dist: xenial
+    - env: NAME=linux/py36
       python: 3.6
-      language: python
+      <<: *linux-vm
+      <<: *test-job
 
-    - <<: *pytest
-      env: NAME=linux/py37
-      os: linux
-      dist: xenial
+    - env: NAME=linux/py37
       python: 3.7
-      language: python
+      <<: *linux-vm
+      <<: *test-job
 
     ### Windows ###
-    - <<: *pytest
-      env: NAME=windows/py27
+    - env: NAME=windows/py27
       os: windows
       language: bash
       before_script:
@@ -72,9 +68,9 @@ matrix:
         - python2 --version || true
         - python3 --version || true
         - python --version || true
+      <<: *test-job
 
-    - <<: *pytest
-      env: NAME=windows/py36
+    - env: NAME=windows/py36
       os: windows
       language: bash
       before_script:
@@ -83,9 +79,9 @@ matrix:
         - python2 --version || true
         - python3 --version || true
         - python --version || true
+      <<: *test-job
 
-    - <<: *pytest
-      env: NAME=windows/py37
+    - env: NAME=windows/py37
       os: windows
       language: bash
       before_script:
@@ -94,4 +90,5 @@ matrix:
         - python2 --version || true
         - python3 --version || true
         - python --version || true
+      <<: *test-job
     
