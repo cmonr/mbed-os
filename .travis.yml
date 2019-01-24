@@ -53,12 +53,14 @@ matrix:
       os: windows
       script:
         - choco install python2
-        - python --version
+        - echo "$PATH"
+        - python2 --version
 
     - env: NAME=tools-windows/py3.6
       language: sh
       os: windows
       script:
         - choco install python --version 3.6.8
-        - python --version
+        - echo "$PATH"
+        - python3 --version
 
