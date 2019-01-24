@@ -21,13 +21,13 @@ matrix:
     
     ### Linux ###
     - env: NAME=linux/py27
+      python: 2.7
       - &linux-vm
         os: linux
         dist: xenial
         language: python
-      python: 2.7
       - &test-job
-        install:
+        install: 
           # Install and update python dependencies
           - python --version
           - python -m pip install --upgrade pip
@@ -50,6 +50,6 @@ matrix:
 
     - env: NAME=linux/py36
       python: 3.6
-      <<: *linux-vm
-      <<: *test-job
+      *linux-vm
+      *test-job
 
