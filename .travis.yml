@@ -68,7 +68,10 @@ matrix:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH="${py_path}:${py_path}/scripts/:${PATH}"
         - ls -al ${py_path}/scripts
-        - pip.exe --version
+        - echo "${PATH}"
+        - pip.exe --version || true
+        - export pip="${py_path}/scripts/pip.exe"
+        - pip.exe --version || true
 
     - <<: *windows-vm
       name: windows/py36
