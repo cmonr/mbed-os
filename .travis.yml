@@ -67,6 +67,8 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH=${PATH}:"${py_path}:${py_path}/Scripts/"
+        - ls -al "${py_path}"
+        - ls -al "${py_path}/Scripts"
       install: 
         - python --version
         - pip --version
