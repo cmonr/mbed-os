@@ -67,7 +67,7 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH="${py_path}:${py_path}/scripts:${PATH}"
-        - python install pip setuptools
+        - ls -al ${py_path}/scripts
 
     - <<: *windows-vm
       name: windows/py36
