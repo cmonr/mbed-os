@@ -19,8 +19,12 @@ language: bash
 matrix:
   include:
     
+    ### Linux ###
     - &pytest
-      env: NAME=changeme
+      env: NAME=linux/py27
+      os: linux
+      python: 2.7
+      language: python
       install:
         # Install and update python dependencies
         - python --version
@@ -39,15 +43,8 @@ matrix:
       script:
         - PYTHONPATH=. coverage run -a -m pytest tools/test
         - python tools/test/pylint.py
-          #- coverage run -a tools/project.py -S | sed -n '/^Total/p'
+          # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
           # - coverage html
-
-    ### Linux ###
-    - <<: *pytest
-      env: NAME=linux/py27
-      os: linux
-      python: 2.7
-      language: python
 
     - <<: *pytest
       env: NAME=linux/py36
