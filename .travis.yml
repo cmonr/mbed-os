@@ -70,7 +70,9 @@ matrix:
         - ls -al "${py_path}"
         - ls -al "${py_path}/Scripts"
       install: 
+        - which python
         - python --version
+        - which pip
         - pip --version
       script: echo "pass"
 
