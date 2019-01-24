@@ -61,7 +61,7 @@ matrix:
     - &windows-vm
       env: NAME=windows/py27 PY=2.7.15
       os: windows
-      before-script:
+      before_install:
         - choco install python --vesrion ${PY} || true
         - choco install python2 --vesrion ${PY} || true
         - choco install python3 --vesrion ${PY} || true
