@@ -42,36 +42,39 @@ matrix:
     
     ### Linux ###
     - &linux-vm
-      env: NAME=linux/py27 
+      name: linux/py27
       python: 2.7
       language: python
       os: linux
       dist: xenial
 
     - <<: *linux-vm
-      env: NAME=linux/py36
+      name: linux/py36
       python: 3.6
 
     - <<: *linux-vm
-      env: NAME=linux/py37
+      name: linux/py37
       python: 3.7
 
 
     ### Windows ###
     - &windows-vm
-      env: NAME=windows/py27 PY=2.7.15
+      name: windows/py27
+      env: PY=2.7.15
       os: windows
       before_install:
-        - choco install python --vesrion ${PY} || true
-        - choco install python2 --vesrion ${PY} || true
-        - choco install python3 --vesrion ${PY} || true
+        - choco install python --version ${PY} || true
+        - choco install python2 --version ${PY} || true
+        - choco install python3 --version ${PY} || true
         - python --version || true
         - python2 --version || true
         - python3 --version || true
 
     - <<: *windows-vm
-      env: NAME=windows/py3.6 PY=3.6.8
+      name: windows/py36
+      env: PY=3.6.8
 
     - <<: *windows-vm
-      env: NAME=windows/py3.7 PY=3.7.2
+      name: windows/py37
+      env: PY=3.7.2
 
