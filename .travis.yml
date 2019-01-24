@@ -95,4 +95,3 @@ matrix:
     - <<: *windows-vm
       name: windows/py37
       env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37"
-
