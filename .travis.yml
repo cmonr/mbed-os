@@ -19,7 +19,6 @@ language: bash
 install: 
   # Install and update python dependencies
   - python --version
-  - python -m pip install --upgrade pip
   - |-
     tr -d ' ' >> requirements.txt <<< "
     mock==2.0.0
@@ -47,6 +46,9 @@ matrix:
       dist: xenial
       python: 2.7
       language: python
+      before_install: 
+      - python -m pip install --upgrade pip
+      - python -m pip install --upgrade setuptools
 
     - <<: *linux-vm
       name: linux/py36
@@ -65,8 +67,7 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH="${py_path}:${py_path}/scripts:${PATH}"
-        - which python
-        - which pip
+        - python install pip setuptools
 
     - <<: *windows-vm
       name: windows/py36
