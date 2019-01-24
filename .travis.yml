@@ -66,8 +66,9 @@ matrix:
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="C:/Python27"
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
-        - export PATH="${py_path}:${py_path}/scripts:${PATH}"
+        - export PATH="${py_path}:${py_path}/scripts/:${PATH}"
         - ls -al ${py_path}/scripts
+        - pip.exe --version
 
     - <<: *windows-vm
       name: windows/py36
