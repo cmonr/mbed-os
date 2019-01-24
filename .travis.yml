@@ -26,30 +26,28 @@ matrix:
         os: linux
         dist: xenial
         language: python
-      - &test-job
-        install: 
-          # Install and update python dependencies
-          - python --version
-          - python -m pip install --upgrade pip
-          - |-
-            tr -d ' ' >> requirements.txt <<< "
-            mock==2.0.0
-            pytest==3.3.0
-            pylint>=1.9,<2
-            hypothesis>=3,<4
-            coverage>=4.5,<5
-            coveralls>=1.5,<2
-            "
-          - pip install -r requirements.txt
-          - pip list --verbose
-        script:
-          - PYTHONPATH=. coverage run -a -m pytest tools/test
-          - python tools/test/pylint.py
-            # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
-            # - coverage html
+      install: 
+        # Install and update python dependencies
+        - python --version
+        - python -m pip install --upgrade pip
+        - |-
+          tr -d ' ' >> requirements.txt <<< "
+          mock==2.0.0
+          pytest==3.3.0
+          pylint>=1.9,<2
+          hypothesis>=3,<4
+          coverage>=4.5,<5
+          coveralls>=1.5,<2
+          "
+        - pip install -r requirements.txt
+        - pip list --verbose
+      script:
+        - PYTHONPATH=. coverage run -a -m pytest tools/test
+        - python tools/test/pylint.py
+          # - coverage run -a tools/project.py -S | sed -n '/^Total/p'
+          # - coverage html
 
     - env: NAME=linux/py36
       python: 3.6
       *linux-vm
-      *test-job
 
