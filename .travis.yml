@@ -51,6 +51,10 @@ matrix:
       - python -m pip install --upgrade setuptools
 
     - <<: *linux-vm
+      name: linux/py35
+      python: 3.5
+
+    - <<: *linux-vm
       name: linux/py36
       python: 3.6
 
@@ -67,6 +71,10 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
+
+    - <<: *windows-vm
+      name: windows/py35
+      env: py_ver=3.5.6 py_pkg_name=python3 py_path="/c/Python35"
 
     - <<: *windows-vm
       name: windows/py36
