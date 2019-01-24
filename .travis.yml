@@ -71,10 +71,10 @@ matrix:
         - echo "${PATH}"
         - env
         - pip --version || true
-        - export pip="${py_path}/scripts/pip.exe"
+        - export pip="${py_path}/Scripts/pip.exe"
       install: 
-        - python --version
-        - pip --version
+        - ${python} --version
+        - ${pip} --version
       script: echo "pass"
 
     - <<: *windows-vm
