@@ -67,14 +67,6 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
-        - ls -al "${py_path}"
-        - ls -al "${py_path}/Scripts"
-      install: 
-        - which python
-        - python --version
-        - which pip
-        - pip --version
-      script: echo "pass"
 
     - <<: *windows-vm
       name: windows/py36
