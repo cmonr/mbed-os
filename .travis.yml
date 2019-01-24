@@ -65,6 +65,8 @@ matrix:
       before_install:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export PATH="${py_path}:${PATH}"
+        - which python
+        - which pip
 
     - <<: *windows-vm
       name: windows/py36
