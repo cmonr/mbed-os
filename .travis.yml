@@ -23,6 +23,7 @@ cache:
   branch: bash
   directories:
     - ${HOME}/.cache/pip
+    - ${HOME}/.cache/choco
 
 install: 
   - python --version
@@ -79,6 +80,7 @@ matrix:
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27"
       before_install:
+        - choco set cacheLocation ${HOME}/.cache/choco
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
 
