@@ -25,8 +25,11 @@ cache:
     - ${HOME}/.cache/pip
 
 install: 
-  # Install and update python dependencies
   - python --version
+  # Update python install tools
+  - python -m pip install --upgrade pip==18.1
+  - python -m pip install --upgrade setuptools==40.4.3
+  # Install required modules
   - |-
     tr -d ' ' >> requirements.txt <<< "
     mock==2.0.0
@@ -55,9 +58,6 @@ matrix:
       dist: xenial
       python: 2.7
       language: python
-      before_install: 
-      - python -m pip install --upgrade pip==18.1
-      - python -m pip install --upgrade setuptools==40.4.3
 
     - <<: *linux-vm
       name: linux/py35
