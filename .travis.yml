@@ -22,7 +22,7 @@ git:
 cache:
   branch: bash
   directories:
-    - $HOME/.cache/pip
+    - ${HOME}/.cache/pip
 
 install: 
   # Install and update python dependencies
@@ -36,7 +36,7 @@ install:
     coverage>=4.5,<5
     coveralls>=1.5,<2
     "
-  - pip install -r requirements.txt --cache-dir $HOME/.cache/pip
+  - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip --verbose
   - pip list --verbose
 script:
   - PYTHONPATH=. coverage run -a -m pytest tools/test
@@ -49,6 +49,7 @@ matrix:
     
     ### Linux ###
     - &linux-vm
+      stage: linux/py
       name: linux/py27
       os: linux
       dist: xenial
@@ -73,6 +74,7 @@ matrix:
 
     ### Windows ###
     - &windows-vm
+      stage: windows/py
       name: windows/py27
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27"
