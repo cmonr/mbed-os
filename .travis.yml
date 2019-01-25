@@ -16,6 +16,9 @@
 
 language: bash
 
+git:
+  depth: 1
+
 install: 
   # Install and update python dependencies
   - python --version
