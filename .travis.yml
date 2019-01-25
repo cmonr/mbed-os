@@ -19,6 +19,11 @@ language: bash
 git:
   depth: 1
 
+cache:
+  branch: bash
+  directories:
+    - $HOME/.cache/pip
+
 install: 
   # Install and update python dependencies
   - python --version
@@ -31,7 +36,7 @@ install:
     coverage>=4.5,<5
     coveralls>=1.5,<2
     "
-  - pip install -r requirements.txt
+  - pip install -r requirements.txt --cache-dir $HOME/.cache/pip
   - pip list --verbose
 script:
   - PYTHONPATH=. coverage run -a -m pytest tools/test
