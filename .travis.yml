@@ -40,7 +40,7 @@ install:
     coverage>=4.5,<5
     coveralls>=1.5,<2
     "
-  - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip --verbose
+  - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip
   - pip list --verbose
 script:
   - PYTHONPATH=. coverage run -a -m pytest tools/test
