@@ -16,9 +16,6 @@
 
 language: bash
 
-git:
-  depth: 1
-
 cache:
   branch: bash
   directories:
