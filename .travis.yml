@@ -55,8 +55,8 @@ matrix:
       python: 2.7
       language: python
       before_install: 
-      - python -m pip install --upgrade pip
-      - python -m pip install --upgrade setuptools
+      - python -m pip install --upgrade pip==18.1
+      - python -m pip install --upgrade setuptools==40.4.3
 
     - <<: *linux-vm
       name: linux/py35
