@@ -22,8 +22,8 @@ cache:
     - ${HOME}/.cache/pip
     - ${HOME}/.cache/choco
 
-
-install: &install-py
+### Python Testing ###
+install-py: &install-py
   - python --version
   # Update python install tools
   - python -m pip install --upgrade pip==18.1
@@ -41,7 +41,7 @@ install: &install-py
   - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip
   - pip list --verbose
 
-script: &script-py
+script-py: &script-py
   - PYTHONPATH=. coverage run -a -m pytest tools/test
   - python tools/test/pylint.py
   - coverage run -a tools/project.py -S | sed -n '/^Total/p'
