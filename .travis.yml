@@ -22,7 +22,8 @@ cache:
     - ${HOME}/.cache/pip
     - ${HOME}/.cache/choco
 
-install: 
+
+install: &install-py
   - python --version
   # Update python install tools
   - python -m pip install --upgrade pip==18.1
@@ -39,11 +40,13 @@ install:
     "
   - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip
   - pip list --verbose
-script:
+
+script: &script-py
   - PYTHONPATH=. coverage run -a -m pytest tools/test
   - python tools/test/pylint.py
   - coverage run -a tools/project.py -S | sed -n '/^Total/p'
   - coverage html
+
 
 matrix:
   include:
@@ -56,6 +59,8 @@ matrix:
       dist: xenial
       python: 2.7
       language: python
+      install: *install-py
+      script: *script-py
 
     - <<: *linux-vm
       name: linux/py35
@@ -80,6 +85,8 @@ matrix:
         - choco config set cacheLocation ${HOME}/.cache/choco
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
+      install: *install-py
+      script: *script-py
 
     - <<: *windows-vm
       name: windows/py35
