@@ -25,7 +25,6 @@ cache:
 
 ### Python Setup steps ###
 install-py: &install-py
-  - exit 0
   - python --version
   # Update python install tools
   - python -m pip install --upgrade pip==18.1
@@ -51,7 +50,6 @@ install-windows-py: &install-windows-py
 
 ### Python Tests ###
 script-py: &script-py
-  - exit 0
   - PYTHONPATH=. coverage run -a -m pytest tools/test
   - python tools/test/pylint.py
   - coverage run -a tools/project.py -S | sed -n '/^Total/p'
@@ -92,8 +90,8 @@ matrix:
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27"
       install:
-       - *install-windows-py
-       - *install-py
+        <<: *install-windows-py
+        <<: *install-py
       script: *script-py
 
     - <<: *windows-vm
