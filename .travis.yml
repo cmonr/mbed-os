@@ -23,7 +23,7 @@ cache:
     - ${HOME}/.cache/choco
 
 
-### Python Setup steps ###
+### Python setup and tests ###
 install-py: &install-py
   - python --version
   # Update python install tools
@@ -42,13 +42,6 @@ install-py: &install-py
   - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip
   - pip list --verbose
 
-install-windows-py: &install-windows-py
-  - choco config set cacheLocation ${HOME}/.cache/choco
-  - choco install ${py_pkg_name} --version ${py_ver}
-  - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
-
-
-### Python Tests ###
 script-py: &script-py
   - PYTHONPATH=. coverage run -a -m pytest tools/test
   - python tools/test/pylint.py
@@ -89,9 +82,11 @@ matrix:
       name: windows/py27
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27"
-      install:
-        <<: *install-windows-py
-        <<: *install-py
+      before-install:
+        - choco config set cacheLocation ${HOME}/.cache/choco
+        - choco install ${py_pkg_name} --version ${py_ver}
+        - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
+      install: *install-py
       script: *script-py
 
     - <<: *windows-vm
