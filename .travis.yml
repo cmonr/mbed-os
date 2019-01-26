@@ -27,8 +27,8 @@ cache:
 install-py: &install-py
   - python --version
   # Update python install tools
-  - python -m pip install --upgrade pip==18.1
-  - python -m pip install --upgrade setuptools==40.4.3
+  #- python -m pip install --upgrade pip==18.1
+  #- python -m pip install --upgrade setuptools==40.4.3
   # Install required modules
   - |-
     tr -d ' ' >> requirements.txt <<< "
