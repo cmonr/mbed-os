@@ -33,7 +33,7 @@ install:
   - |
     if [ ! -d "${gcc_6q2_path}" ]; then
       curl --location --continue-at - --silent https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc-6q2-linux.tar.bz2 \
-        --output "${gcc_6q2_archive"
+        --output "${gcc_6q2_archive}"
       tar -xf "${gcc_6q2_archive}"
       rm "${gcc_6q2_archive}"
     fi
