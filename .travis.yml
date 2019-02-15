@@ -28,20 +28,43 @@ cache:
 
 env:
   global:
-    - gcc_6q2_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
+    - gcc6_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
+    - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
+    - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q4-major"
 
 
 install:
 ### Setup GCC ###
   - |
-    if [ ! -d "${gcc_6q2_path}" ]; then
-      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc-6q2-linux.tar.bz2 \
-        --output "gcc_6q2.tar.bz2"
+    if [ ! -d "${gcc6_path}" ]; then
+      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc6-linux.tar.bz2 \
+        --output "gcc6.tar.bz2"
       mkdir -p "${HOME}/.cache/compilers"
-      tar -xf "gcc_6q2.tar.bz2" -C "${HOME}/.cache/compilers"
-      rm "gcc_6q2.tar.bz2"
+      tar -xf "gcc6.tar.bz2" -C "${HOME}/.cache/compilers"
+      rm "gcc6.tar.bz2"
     fi
-  - ${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
+  - ${gcc6_path}/bin/arm-none-eabi-gcc --version
+
+  - |
+    if [ ! -d "${gcc7_path}" ]; then
+      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc7-linux.tar.bz2 \
+        --output "gcc7.tar.bz2"
+      mkdir -p "${HOME}/.cache/compilers"
+      tar -xf "gcc7.tar.bz2" -C "${HOME}/.cache/compilers"
+      rm "gcc7.tar.bz2"
+    fi
+  - ${gcc7_path}/bin/arm-none-eabi-gcc --version
+
+  - |
+    if [ ! -d "${gcc8_path}" ]; then
+      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc8-linux.tar.bz2 \
+        --output "gcc_8.tar.bz2"
+      mkdir -p "${HOME}/.cache/compilers"
+      tar -xf "gcc8.tar.bz2" -C "${HOME}/.cache/compilers"
+      rm "gcc8.tar.bz2"
+    fi
+  - ${gcc8_path}/bin/arm-none-eabi-gcc --version
+
 
 ### Setup Python ###
   - python --version
@@ -64,7 +87,6 @@ install:
 ### Setup Mbed CLI ###
   - pip install mbed-cli
   - mbed --version
-  - mbed config --global GCC_ARM_PATH "${gcc_6q2_path}/bin"
 
 script:
 ### Test Python ###
@@ -75,8 +97,17 @@ script:
 
 ### Test Compile ###
   - |
-    mbed test --compile -t GCC_ARM -m K64F --clean --verbose  2>&1 > compile.log \
+    mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
+    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
       || tail -n100 compile.log
+  - |
+    mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
+    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
+      || tail -n100 compile.log && true
+  - |
+    mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
+    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
+      || tail -n100 compile.log && true
 
 matrix:
   include:
