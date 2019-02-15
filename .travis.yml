@@ -39,7 +39,7 @@ install:
     fi
   - pwd
   - ls -al "${HOME}/.cache/compilers"
-  - ./${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
+  - ${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
   - exit 0
   - python --version
   # Update python install tools
