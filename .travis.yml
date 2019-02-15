@@ -14,6 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Notes:
+# - How to use YAML multilines: https://yaml-multiline.info/
+
 language: bash
 
 cache:
@@ -39,6 +42,7 @@ install:
       rm "gcc_6q2.tar.bz2"
     fi
   - ${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
+
 ### Setup Python ###
   - python --version
   # Update python install tools
@@ -57,12 +61,20 @@ install:
   - pip install -r requirements.txt --cache-dir ${HOME}/.cache/pip
   - pip list --verbose
 
+### Setup Mbed CLI ###
+  - pip install -r mbed-cli
+  - mbed --version
+  - mbed config --global GCC_ARM_PATH "${gcc_6q2_path}/bin"
+
 script:
-  - exit 0
+### Test Python ###
   - PYTHONPATH=. coverage run -a -m pytest tools/test
   - python tools/test/pylint.py
   - coverage run -a tools/project.py -S | sed -n '/^Total/p'
   - coverage html
+
+### Test Compile ###
+  - mbed test --compile -t GCC_ARM -m K64F --clean --verbose
 
 
 matrix:
