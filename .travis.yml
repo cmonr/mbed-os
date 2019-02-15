@@ -74,7 +74,7 @@ script:
   - coverage html
 
 ### Test Compile ###
-  - mbed test --compile -t GCC_ARM -m K64F --clean --verbose
+  - mbed test --compile -t GCC_ARM -m K64F --clean
 
 
 matrix:
