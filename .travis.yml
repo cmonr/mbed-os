@@ -25,17 +25,16 @@ cache:
 
 env:
   global:
-    - gcc_6q2_archive="${HOME}/.cache/compilers/gcc_6q2_linux.tar.bz2"
-    - gcc_6q2_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update/bin"
+    - gcc_6q2_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
 
 
 install:
   - |
     if [ ! -d "${gcc_6q2_path}" ]; then
       curl --location --continue-at - https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc-6q2-linux.tar.bz2 \
-        --output "${gcc_6q2_archive}"
-      tar -xvf "${gcc_6q2_archive}" -C "${HOME}/.cache/compilers"
-      rm "${gcc_6q2_archive}"
+        --output "gcc_6q2.tar.bz2"
+      tar -xvf "gcc_6q2.tar.bz2" -C "${HOME}/.cache/compilers"
+      rm "gcc_6q2.tar.bz2"
     fi
   - ./${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
   - exit 0
