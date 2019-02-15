@@ -144,6 +144,7 @@ matrix:
       env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
     - <<: *linux-vm
       name: linux.py37.gcc8
+      stage: linux/gcc8
       env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
 
 
