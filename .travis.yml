@@ -74,8 +74,9 @@ script:
   - coverage html
 
 ### Test Compile ###
-  - mbed test --compile -t GCC_ARM -m K64F --clean
-
+  - |
+    mbed test --compile -t GCC_ARM -m K64F --clean --verbose  2>&1 > compile.log \
+      || tail -n100 compile.log
 
 matrix:
   include:
