@@ -33,9 +33,12 @@ install:
     if [ ! -d "${gcc_6q2_path}" ]; then
       curl --location --continue-at - https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc-6q2-linux.tar.bz2 \
         --output "gcc_6q2.tar.bz2"
+      mkdir -p "${HOME}/.cache/compilers"
       tar -xvf "gcc_6q2.tar.bz2" -C "${HOME}/.cache/compilers"
       rm "gcc_6q2.tar.bz2"
     fi
+  - pwd
+  - ls -al "${HOME}/.cache/compilers"
   - ./${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
   - exit 0
   - python --version
