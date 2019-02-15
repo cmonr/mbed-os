@@ -62,7 +62,7 @@ install:
   - pip list --verbose
 
 ### Setup Mbed CLI ###
-  - pip install -r mbed-cli
+  - pip install mbed-cli
   - mbed --version
   - mbed config --global GCC_ARM_PATH "${gcc_6q2_path}/bin"
 
