@@ -37,7 +37,7 @@ install:
       tar -xf "${gcc_6q2_archive}" -C "${HOME}/.cache/compilers"
       rm "${gcc_6q2_archive}"
     fi
-  - ./${gcc_6q2_path}/arm-none-eabi-gcc --version
+  - ./${gcc_6q2_path}/bin/arm-none-eabi-gcc --version
   - exit 0
   - python --version
   # Update python install tools
