@@ -90,10 +90,10 @@ install:
 
 script:
 ### Test Python ###
-  - PYTHONPATH=. coverage run -a -m pytest tools/test
-  - python tools/test/pylint.py
-  - coverage run -a tools/project.py -S | sed -n '/^Total/p'
-  - coverage html
+  #- PYTHONPATH=. coverage run -a -m pytest tools/test
+  #- python tools/test/pylint.py
+  #- coverage run -a tools/project.py -S | sed -n '/^Total/p'
+  #- coverage html
 
 ### Test Compile ###
   - |
