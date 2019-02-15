@@ -30,7 +30,7 @@ env:
   global:
     - gcc6_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
-    - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q4-major"
+    - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
 
 
 install:
@@ -58,7 +58,7 @@ install:
   - |
     if [ ! -d "${gcc8_path}" ]; then
       curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc8-linux.tar.bz2 \
-        --output "gcc_8.tar.bz2"
+        --output "gcc8.tar.bz2"
       mkdir -p "${HOME}/.cache/compilers"
       tar -xf "gcc8.tar.bz2" -C "${HOME}/.cache/compilers"
       rm "gcc8.tar.bz2"
