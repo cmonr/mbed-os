@@ -25,7 +25,7 @@ cache:
 
 install:
   - |
-    curl --location --continue-at --silent https://s3-eu-west-1.amazonaws.com/mbed-os/depos/gcc-6q2-linux.tar.bz2 \
+    curl --location --continue-at - --silent https://s3-eu-west-1.amazonaws.com/mbed-os/depos/gcc-6q2-linux.tar.bz2 \
       --output "${HOME}/.cache/compilers/gcc-6q2-linux.tar.bz2"
   - exit 0
   - python --version
