@@ -98,20 +98,20 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
-      || tail -n100 compile.log
+    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+      || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
-      || tail -n100 compile.log && true
+    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+      || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F -n mbed-os-tests-integration-basic --clean --verbose 2>&1 > compile.log \
-      || tail -n100 compile.log && true
+    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+      || true
 
 matrix:
   include:
-    
+
     ### Linux ###
     - &linux-vm
       stage: linux/py
