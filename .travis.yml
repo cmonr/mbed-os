@@ -34,7 +34,7 @@ env:
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
     - |
-      source_gcc="
+      source_gcc='
       local gcc_path=\"${1}\"
       local filename=\"${2}\"
 
@@ -44,11 +44,11 @@ env:
         mkdir -p \"${HOME}/.cache/compilers\";
         tar -xf \"${filename}\" -C \"${HOME}/.cache/compilers\";
         rm \"${filename}\";
-        )
-      "
+        )'
 
 install:
 ### Setup GCC ###
+  - echo "${source_gcc}"
   - $source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
 
@@ -101,7 +101,7 @@ script:
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
-    ${compile_k64f} --stats-depth=0--clean 2>&1 \
+    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1 \
       || true
 
