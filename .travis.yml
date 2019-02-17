@@ -28,41 +28,35 @@ cache:
 
 env:
   global:
+    - deps_url="https://s3-eu-west-1.amazonaws.com/mbed-os/deps"
     - gcc6_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
+    - |
+      function source_gcc()
+      {
+        local gcc_path="${1}"
+        local filename="${2}"
+
+        if [ ! -d "${gcc_path}" ]; then
+          curl --location "${deps_url}/${filename}" \
+            --progress-bar --output "${filename}"
+          mkdir -p "${HOME}/.cache/compilers"
+          tar -xf "${filename}" -C "${HOME}/.cache/compilers"
+          rm "${filename}"
+        fi
+      }
 
 install:
 ### Setup GCC ###
-  - |
-    if [ ! -d "${gcc6_path}" ]; then
-      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc6-linux.tar.bz2 \
-        --progress-bar --output "gcc6.tar.bz2"
-      mkdir -p "${HOME}/.cache/compilers"
-      tar -xf "gcc6.tar.bz2" -C "${HOME}/.cache/compilers"
-      rm "gcc6.tar.bz2"
-    fi
+  - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
 
-  - |
-    if [ ! -d "${gcc7_path}" ]; then
-      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc7-linux.tar.bz2 \
-        --progress-bar --output "gcc7.tar.bz2"
-      mkdir -p "${HOME}/.cache/compilers"
-      tar -xf "gcc7.tar.bz2" -C "${HOME}/.cache/compilers"
-      rm "gcc7.tar.bz2"
-    fi
+  - source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
   - ${gcc7_path}/bin/arm-none-eabi-gcc --version
 
-  - |
-    if [ ! -d "${gcc8_path}" ]; then
-      curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc8-linux.tar.bz2 \
-        --progress-bar --output "gcc8.tar.bz2"
-      mkdir -p "${HOME}/.cache/compilers"
-      tar -xf "gcc8.tar.bz2" -C "${HOME}/.cache/compilers"
-      rm "gcc8.tar.bz2"
-    fi
+  - source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
   - ${gcc8_path}/bin/arm-none-eabi-gcc --version
 
 
