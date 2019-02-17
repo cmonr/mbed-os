@@ -33,7 +33,12 @@ env:
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
-    - export source_gcc() { [ ! -d "${1}" ] && echo "${1}" cached.' }
+    - export function source_gcc() { echo "${1}" cached.' }
+    - source_gcc "Hi" || true
+    - $source_gcc "Hi" || true
+    - source_gcc() "Hi" || true
+    - $source_gcc() "Hi" || true
+    - exit 0
 
                             #curl --location \"${deps_url}/${2}\" \
                             #          --progress-bar --output \"${2}\"; \
