@@ -98,15 +98,18 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
+      || mbed test --compile -t GCC_ARM -m K64F --verbose \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
+      || mbed test --compile -t GCC_ARM -m K64F --verbose \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean --verbose 2>&1 | tee compile.log \
+    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
+      || mbed test --compile -t GCC_ARM -m K64F --verbose \
       || true
 
 matrix:
