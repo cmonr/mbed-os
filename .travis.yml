@@ -51,13 +51,13 @@ env:
 
 install:
 ### Setup GCC ###
-  - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
+  - $source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
 
-  - source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
+  - $source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
   - ${gcc7_path}/bin/arm-none-eabi-gcc --version
 
-  - source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
+  - $source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
   - ${gcc8_path}/bin/arm-none-eabi-gcc --version
 
 
