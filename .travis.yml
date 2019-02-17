@@ -38,13 +38,13 @@ env:
       local gcc_path=\"${1}\"
       local filename=\"${2}\"
 
-      if [ ! -d \"${gcc_path}\" ]; then
+      [ ! -d \"${gcc_path}\" ] && (
         curl --location \"${deps_url}/${filename}\" \
-          --progress-bar --output \"${filename}\"
-        mkdir -p \"${HOME}/.cache/compilers\"
-        tar -xf \"${filename}\" -C \"${HOME}/.cache/compilers\"
-        rm \"${filename}\"
-      fi
+          --progress-bar --output \"${filename}\";
+        mkdir -p \"${HOME}/.cache/compilers\";
+        tar -xf \"${filename}\" -C \"${HOME}/.cache/compilers\";
+        rm \"${filename}\";
+        )
       "
 
 install:
