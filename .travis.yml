@@ -34,7 +34,7 @@ env:
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
     - >
-      source_gcc='\
+      export source_gcc=$'\
       local gcc_path=\"${1}\"; \
       local filename=\"${2}\"; \
       [ ! -d \"${gcc_path}\" ] && ( \
