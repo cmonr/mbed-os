@@ -47,6 +47,7 @@ env:
           rm "${filename}"
         fi
       }
+      export source_gcc
 
 install:
 ### Setup GCC ###
