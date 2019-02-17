@@ -31,7 +31,7 @@ env:
     - gcc6_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-6-2017-q2-update"
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
-
+    - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
 
 install:
 ### Setup GCC ###
@@ -98,18 +98,18 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
-      || mbed test --compile -t GCC_ARM -m K64F --verbose \
+    ${compile_k64f} --clean 2>&1 \
+      || ${compile_k64f} --verbose 2>&1 \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
-      || mbed test --compile -t GCC_ARM -m K64F --verbose \
+    ${compile_k64f} --clean 2>&1 \
+      || ${compile_k64f} --verbose 2>&1 \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
-    mbed test --compile -t GCC_ARM -m K64F --clean  2>&1 \
-      || mbed test --compile -t GCC_ARM -m K64F --verbose \
+    ${compile_k64f} --clean 2>&1 \
+      || ${compile_k64f} --verbose 2>&1 \
       || true
 
 matrix:
