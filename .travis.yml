@@ -38,7 +38,7 @@ install:
   - |
     if [ ! -d "${gcc6_path}" ]; then
       curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc6-linux.tar.bz2 \
-        --output "gcc6.tar.bz2"
+        --progress-bar --output "gcc6.tar.bz2"
       mkdir -p "${HOME}/.cache/compilers"
       tar -xf "gcc6.tar.bz2" -C "${HOME}/.cache/compilers"
       rm "gcc6.tar.bz2"
@@ -48,7 +48,7 @@ install:
   - |
     if [ ! -d "${gcc7_path}" ]; then
       curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc7-linux.tar.bz2 \
-        --output "gcc7.tar.bz2"
+        --progress-bar --output "gcc7.tar.bz2"
       mkdir -p "${HOME}/.cache/compilers"
       tar -xf "gcc7.tar.bz2" -C "${HOME}/.cache/compilers"
       rm "gcc7.tar.bz2"
@@ -58,7 +58,7 @@ install:
   - |
     if [ ! -d "${gcc8_path}" ]; then
       curl --location https://s3-eu-west-1.amazonaws.com/mbed-os/deps/gcc8-linux.tar.bz2 \
-        --output "gcc8.tar.bz2"
+        --progress-bar --output "gcc8.tar.bz2"
       mkdir -p "${HOME}/.cache/compilers"
       tar -xf "gcc8.tar.bz2" -C "${HOME}/.cache/compilers"
       rm "gcc8.tar.bz2"
@@ -98,17 +98,17 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
-    ${compile_k64f} --clean 2>&1 \
+    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1 \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
-    ${compile_k64f} --clean 2>&1 \
+    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1 \
       || true
   - |
     mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
-    ${compile_k64f} --clean 2>&1 \
+    ${compile_k64f} --stats-depth=0--clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1 \
       || true
 
