@@ -34,20 +34,18 @@ env:
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
     - |
-      function source_gcc()
-      {
-        local gcc_path="${1}"
-        local filename="${2}"
+      source_gcc="
+      local gcc_path=\"${1}\"
+      local filename=\"${2}\"
 
-        if [ ! -d "${gcc_path}" ]; then
-          curl --location "${deps_url}/${filename}" \
-            --progress-bar --output "${filename}"
-          mkdir -p "${HOME}/.cache/compilers"
-          tar -xf "${filename}" -C "${HOME}/.cache/compilers"
-          rm "${filename}"
-        fi
-      }
-      export source_gcc
+      if [ ! -d \"${gcc_path}\" ]; then
+        curl --location \"${deps_url}/${filename}\" \
+          --progress-bar --output \"${filename}\"
+        mkdir -p \"${HOME}/.cache/compilers\"
+        tar -xf \"${filename}\" -C \"${HOME}/.cache/compilers\"
+        rm \"${filename}\"
+      fi
+      "
 
 install:
 ### Setup GCC ###
