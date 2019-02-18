@@ -51,14 +51,8 @@ install:
         fi
       }'
 
-  - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
-  - ${gcc6_path}/bin/arm-none-eabi-gcc --version
-
-  - source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
-  - ${gcc7_path}/bin/arm-none-eabi-gcc --version
-
-  - source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
-  - ${gcc8_path}/bin/arm-none-eabi-gcc --version
+  - source_gcc "${gcc_path}" "${gcc_archive_name}"
+  - ${gcc_path}/bin/arm-none-eabi-gcc --version
 
 
 ### Setup Python ###
@@ -92,17 +86,7 @@ script:
 
 ### Test Compile ###
   - |
-    mbed config --global GCC_ARM_PATH "${gcc6_path}/bin"
-    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
-      || ${compile_k64f} --verbose 2>&1 \
-      || true
-  - |
-    mbed config --global GCC_ARM_PATH "${gcc7_path}/bin"
-    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
-      || ${compile_k64f} --verbose 2>&1 \
-      || true
-  - |
-    mbed config --global GCC_ARM_PATH "${gcc8_path}/bin"
+    mbed config --global GCC_ARM_PATH "${gcc_path}/bin"
     ${compile_k64f} --stats-depth=0 --clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1 \
       || true
@@ -113,23 +97,49 @@ matrix:
     ### Linux ###
     - &linux-vm
       stage: linux/py
-      name: linux/py27
+      name: linux.py27.gcc6
       os: linux
+      env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
       dist: xenial
       python: 2.7
       language: python
 
     - <<: *linux-vm
-      name: linux/py35
+      name: linux.py27.gcc7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+    - <<: *linux-vm
+      name: linux.py27.gcc8
+      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
+
+    - <<: *linux-vm
+      name: linux.py35.gcc6
       python: 3.5
+    - <<: *linux-vm
+      name: linux.py35.gcc7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+    - <<: *linux-vm
+      name: linux.py35.gcc8
+      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
 
     - <<: *linux-vm
-      name: linux/py36
+      name: linux.py36.gcc6
       python: 3.6
+    - <<: *linux-vm
+      name: linux.py36.gcc7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+    - <<: *linux-vm
+      name: linux.py36.gcc8
+      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
 
     - <<: *linux-vm
-      name: linux/py37
+      name: linux.py37.gcc6
       python: 3.7
+    - <<: *linux-vm
+      name: linux.py37.gcc7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+    - <<: *linux-vm
+      name: linux.py37.gcc8
+      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
 
 
     ### Windows ###
