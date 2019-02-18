@@ -33,7 +33,7 @@ env:
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
-    - source_gcc=$'echo "0:${0:-} 1:${1:-} 2:${2:-}"'
+    - source_gcc='a() { echo "0:${0:-} 1:${1:-} 2:${2:-}"; }; a'
 
                             #curl --location \"${deps_url}/${2}\" \
                             #          --progress-bar --output \"${2}\"; \
@@ -44,7 +44,7 @@ env:
 
 install:
 ### Setup GCC ###
-  - bash -c "${source_gcc}" "Hi"
+  - eval "${source_gcc} \"Hi\""
   - exit 0
   - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
