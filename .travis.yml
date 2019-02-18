@@ -39,7 +39,7 @@ install:
   - |
     source /dev/stdin <<< '
       source_gcc()
-      {1
+      {
         local _gcc_path="${1}"
         local _filename="${2}"
         if [ ! -d "${_gcc_path}" ]; then
