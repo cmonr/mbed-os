@@ -33,7 +33,10 @@ env:
     - gcc7_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-7-2018-q2-update"
     - gcc8_path="${HOME}/.cache/compilers/gcc-arm-none-eabi-8-2018-q4-major"
     - compile_k64f="mbed test --compile -m K64F -t GCC_ARM"
-    - |
+
+install:
+### Setup GCC ###
+  - |
       source_gcc='
         f()
         {
@@ -48,9 +51,6 @@ env:
                             #        tar -xf \"${2}\" -C \"${HOME}/.cache/compilers\"; \
                             #        rm \"${2}\"; \
                             #      )'
-
-install:
-### Setup GCC ###
   - eval "${source_gcc} \"Hi\""
   - exit 0
   - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
