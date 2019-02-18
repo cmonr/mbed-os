@@ -42,7 +42,7 @@ install:
         local _gcc_path="${1}"
         local _filename="${2}"
         if [ ! -d "${_gcc_path}" ]; then
-          printf "Downloading "${_filename}\n"
+          printf "Downloading ${_filename}\n"
           curl --location "${deps_url}/${_filename}" --output "${_filename}"
           mkdir -p "${HOME}/.cache/compilers"
           printf "Extracting ${_filename}\n"
