@@ -37,22 +37,19 @@ env:
 install:
 ### Setup GCC ###
   - |
-      source_gcc='
-        f()
-        {
-          echo "0:${0:-} 1:${1:-} 2:${2:-}";
-        }
-
-        f'
-
-                            #curl --location \"${deps_url}/${2}\" \
-                            #          --progress-bar --output \"${2}\"; \
-                            #        mkdir -p \"${HOME}/.cache/compilers\"; \
-                            #        tar -xf \"${2}\" -C \"${HOME}/.cache/compilers\"; \
-                            #        rm \"${2}\"; \
-                            #      )'
-  - eval "${source_gcc} \"Hi\""
-  - exit 0
+    source /dev/stdin <<< '
+      source_gcc()
+      {1
+        local _gcc_path="${1}"
+        local _filename="${2}"
+        if [ ! -d "${_gcc_path}" ]; then
+          curl --location "${deps_url}/${_filename}" --progress-bar \
+            --output "${_filename}"
+          mkdir -p "${HOME}/.cache/compilers"
+          tar -xf "${_filename}" -C "${HOME}/.cache/compilers"
+          rm "${_filename}"
+        fi
+      }'
   - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
 
