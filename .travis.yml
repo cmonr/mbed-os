@@ -38,25 +38,26 @@ install:
 ### Setup GCC ###
   - |
     source /dev/stdin <<< '
-      source_gcc()
-      {
+      source_gcc() {
         local _gcc_path="${1}"
         local _filename="${2}"
         if [ ! -d "${_gcc_path}" ]; then
-          curl --location "${deps_url}/${_filename}" --progress-bar \
-            --output "${_filename}"
+          printf "Downloading "${_filename}\n"
+          curl --location "${deps_url}/${_filename}" --output "${_filename}"
           mkdir -p "${HOME}/.cache/compilers"
+          printf "Extracting ${_filename}\n"
           tar -xf "${_filename}" -C "${HOME}/.cache/compilers"
           rm "${_filename}"
         fi
       }'
+
   - source_gcc "${gcc6_path}" "gcc6-linux.tar.bz2"
   - ${gcc6_path}/bin/arm-none-eabi-gcc --version
 
-  - $source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
+  - source_gcc "${gcc7_path}" "gcc7-linux.tar.bz2"
   - ${gcc7_path}/bin/arm-none-eabi-gcc --version
 
-  - $source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
+  - source_gcc "${gcc8_path}" "gcc8-linux.tar.bz2"
   - ${gcc8_path}/bin/arm-none-eabi-gcc --version
 
 
