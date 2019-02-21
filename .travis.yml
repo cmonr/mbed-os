@@ -144,7 +144,7 @@ matrix:
       #stage: windows/py
       name: windows.gcc6.py27
       os: windows
-      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_name="gcc6-win.zip"
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
       before_install:
         - choco config set cacheLocation ${HOME}/.cache/choco
         - choco install ${py_pkg_name} --version ${py_ver}
