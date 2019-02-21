@@ -36,7 +36,7 @@ env:
 
 install:
 ### Setup GCC ###
-  - |
+  - |+
     source /dev/stdin <<< '
       source_gcc() {
         local _gcc_path="${1}"
