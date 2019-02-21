@@ -14,7 +14,7 @@ source_gcc()
     mkdir -p "${HOME}/.cache/compilers"
     [[ "${TRAVIS_OS_NAME}" == "linux" ]] \
       && tar -xf "${_filename}" -C "${HOME}/.cache/compilers" \
-      || unzip "${_filename}" -d "${_gcc_path}"
+      || unzip -q "${_filename}" -d "${_gcc_path}"
     rm "${_filename}"
 
   fi
