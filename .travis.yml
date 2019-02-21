@@ -158,7 +158,7 @@ matrix:
     - <<: *windows-vm
       name: windows.gcc7.py27
       stage: windows/gcc7
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
     - <<: *windows-vm
       name: windows.gcc7.py35
       stage: windows/gcc7
@@ -175,7 +175,7 @@ matrix:
     - <<: *windows-vm
       name: windows.gcc8.py27
       stage: windows/gcc8
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
     - <<: *windows-vm
       name: windows.gcc8.py35
       stage: windows/gcc8
