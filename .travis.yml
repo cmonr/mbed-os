@@ -81,7 +81,7 @@ script:
     pid=$!
     while kill -s 0 "${pid}" 2> /dev/null; do
       < compile.log tail -n1
-      sleep 30
+      sleep 60
     done
   - |
     cd ../
@@ -94,7 +94,7 @@ script:
     pid=$!
     while kill -s 0 "${pid}" 2> /dev/null; do
       < compile.log tail -n1
-      sleep 30
+      sleep 60
     done
 
 
