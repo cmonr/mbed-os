@@ -85,10 +85,10 @@ script:
 matrix:
   include:
 
-    ### Linux ###
+    ### GCC6 ###
     - &linux-vm
-      stage: linux/gcc6
       name: linux.gcc6.py27
+      stage: GCC6
       os: linux
       env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
       dist: xenial
@@ -96,53 +96,10 @@ matrix:
       language: python
 
     - <<: *linux-vm
-      name: linux.gcc6.py35
-      python: 3.5
-    - <<: *linux-vm
-      name: linux.gcc6.py36
-      python: 3.6
-    - <<: *linux-vm
       name: linux.gcc6.py37
       python: 3.7
 
-      #    - <<: *linux-vm
-      #      name: linux.py27.gcc7
-      #      stage: linux/gcc7
-      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py35.gcc7
-      #      stage: linux/gcc7
-      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py36.gcc7
-      #      stage: linux/gcc7
-      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py37.gcc7
-      #      stage: linux/gcc7
-      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-      #
-      #    - <<: *linux-vm
-      #      name: linux.py27.gcc8
-      #      stage: linux/gcc8
-      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py35.gcc8
-      #      stage: linux/gcc8
-      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py36.gcc8
-      #      stage: linux/gcc8
-      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-      #    - <<: *linux-vm
-      #      name: linux.py37.gcc8
-      #      stage: linux/gcc8
-      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-
-
-    ### Windows ###
     - &windows-vm
-      stage: windows/gcc6
       name: windows.gcc6.py27
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
@@ -152,45 +109,25 @@ matrix:
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
 
     - <<: *windows-vm
-      name: windows.gcc6.py35
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc6.py36
-      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
-    - <<: *windows-vm
       name: windows.gcc6.py37
       env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
 
-    - <<: *windows-vm
-      name: windows.gcc7.py27
-      stage: windows/gcc7
-      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc7.py35
-      stage: windows/gcc7
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc7.py36
-      stage: windows/gcc7
-      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc7.py37
-      stage: windows/gcc7
-      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+
+    ### GCC7 ###
+    - <<: *linux-vm
+      name: linux.py27.gcc7
+      stage: GCC7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+    - <<: *linux-vm
+      name: linux.py37.gcc7
+      stage: GCC7
+      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
 
     - <<: *windows-vm
-      name: windows.gcc8.py27
-      stage: windows/gcc8
-      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+      name: windows.gcc7.py27
+      stage: GCC7
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
     - <<: *windows-vm
-      name: windows.gcc8.py35
-      stage: windows/gcc8
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc8.py36
-      stage: windows/gcc8
-      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
-    - <<: *windows-vm
-      name: windows.gcc8.py37
-      stage: windows/gcc8
-      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+      name: windows.gcc7.py37
+      stage: GCC7
+      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
