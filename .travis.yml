@@ -81,29 +81,24 @@ matrix:
 
     ### Linux ###
     - &linux-vm
-      #stage: linux/gcc6
+      stage: linux/gcc6
       name: linux.gcc6.py27
       os: linux
       env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
       dist: xenial
       python: 2.7
       language: python
-      install:
-        - exit 0
-      script:
-        - exit 0
 
+    - <<: *linux-vm
+      name: linux.py35.gcc6
+      python: 3.5
+    - <<: *linux-vm
+      name: linux.py36.gcc6
+      python: 3.6
+    - <<: *linux-vm
+      name: linux.py37.gcc6
+      python: 3.7
 
-      #    - <<: *linux-vm
-      #      name: linux.py35.gcc6
-      #      python: 3.5
-      #    - <<: *linux-vm
-      #      name: linux.py36.gcc6
-      #      python: 3.6
-      #    - <<: *linux-vm
-      #      name: linux.py37.gcc6
-      #      python: 3.7
-      #
       #    - <<: *linux-vm
       #      name: linux.py27.gcc7
       #      stage: linux/gcc7
@@ -141,7 +136,7 @@ matrix:
 
     ### Windows ###
     - &windows-vm
-      #stage: windows/py
+      stage: windows/gcc6
       name: windows.gcc6.py27
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
@@ -150,14 +145,14 @@ matrix:
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
 
-      #    - <<: *windows-vm
-      #      name: windows/py35
-      #      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35"
-      #
-      #    - <<: *windows-vm
-      #      name: windows/py36
-      #      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36"
-      #
-      #    - <<: *windows-vm
-      #      name: windows/py37
-      #      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37"
+    - <<: *windows-vm
+      name: windows.gcc6.py35
+      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
+
+    - <<: *windows-vm
+      name: windows.gcc6.py36
+      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
+
+    - <<: *windows-vm
+      name: windows.gcc6.py37
+      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
