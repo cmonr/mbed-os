@@ -103,49 +103,49 @@ matrix:
       python: 2.7
       language: python
 
-    - <<: *linux-vm
-      name: linux.py35.gcc6
-      python: 3.5
-    - <<: *linux-vm
-      name: linux.py36.gcc6
-      python: 3.6
-    - <<: *linux-vm
-      name: linux.py37.gcc6
-      python: 3.7
-
-    - <<: *linux-vm
-      name: linux.py27.gcc7
-      stage: linux/gcc7
-      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py35.gcc7
-      stage: linux/gcc7
-      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py36.gcc7
-      stage: linux/gcc7
-      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py37.gcc7
-      stage: linux/gcc7
-      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
-
-    - <<: *linux-vm
-      name: linux.py27.gcc8
-      stage: linux/gcc8
-      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py35.gcc8
-      stage: linux/gcc8
-      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py36.gcc8
-      stage: linux/gcc8
-      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
-    - <<: *linux-vm
-      name: linux.py37.gcc8
-      stage: linux/gcc8
-      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py35.gcc6
+      #      python: 3.5
+      #    - <<: *linux-vm
+      #      name: linux.py36.gcc6
+      #      python: 3.6
+      #    - <<: *linux-vm
+      #      name: linux.py37.gcc6
+      #      python: 3.7
+      #
+      #    - <<: *linux-vm
+      #      name: linux.py27.gcc7
+      #      stage: linux/gcc7
+      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py35.gcc7
+      #      stage: linux/gcc7
+      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py36.gcc7
+      #      stage: linux/gcc7
+      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py37.gcc7
+      #      stage: linux/gcc7
+      #      env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
+      #
+      #    - <<: *linux-vm
+      #      name: linux.py27.gcc8
+      #      stage: linux/gcc8
+      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py35.gcc8
+      #      stage: linux/gcc8
+      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py36.gcc8
+      #      stage: linux/gcc8
+      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
+      #    - <<: *linux-vm
+      #      name: linux.py37.gcc8
+      #      stage: linux/gcc8
+      #      env: gcc_path="${gcc8_path}" gcc_archive_name="gcc8-linux.tar.bz2"
 
 
     ### Windows ###
@@ -164,14 +164,14 @@ matrix:
       script:
         - exit 0
 
-    - <<: *windows-vm
-      name: windows/py35
-      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35"
-
-    - <<: *windows-vm
-      name: windows/py36
-      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36"
-
-    - <<: *windows-vm
-      name: windows/py37
-      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37"
+      #    - <<: *windows-vm
+      #      name: windows/py35
+      #      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35"
+      #
+      #    - <<: *windows-vm
+      #      name: windows/py36
+      #      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36"
+      #
+      #    - <<: *windows-vm
+      #      name: windows/py37
+      #      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37"
