@@ -81,7 +81,7 @@ matrix:
 
     ### Linux ###
     - &linux-vm
-      stage: linux/gcc6
+      #stage: linux/gcc6
       name: linux.gcc6.py27
       os: linux
       env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
@@ -141,7 +141,7 @@ matrix:
 
     ### Windows ###
     - &windows-vm
-      stage: windows/py
+      #stage: windows/py
       name: windows.gcc6.py27
       os: windows
       env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_name="gcc6-win.zip"
