@@ -90,13 +90,13 @@ matrix:
       language: python
 
     - <<: *linux-vm
-      name: linux.py35.gcc6
+      name: linux.gcc6.py35
       python: 3.5
     - <<: *linux-vm
-      name: linux.py36.gcc6
+      name: linux.gcc6.py36
       python: 3.6
     - <<: *linux-vm
-      name: linux.py37.gcc6
+      name: linux.gcc6.py37
       python: 3.7
 
       #    - <<: *linux-vm
@@ -164,7 +164,7 @@ matrix:
       stage: windows/gcc7
       env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
     - <<: *windows-vm
-      name: windows.gcc6.py36
+      name: windows.gcc7.py36
       stage: windows/gcc7
       env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
     - <<: *windows-vm
