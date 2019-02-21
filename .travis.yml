@@ -87,8 +87,8 @@ script:
     cd ../
     mkdir "${long_dir}"
     cp -r mbed-os "${long_dir}/mbed-os"
-    cd "${long_dir}/mbed-os"
   - |
+    cd "${long_dir}/mbed-os"
     ${compile_k64f} --stats-depth=0 --clean &> compile.log \
       || ${compile_k64f} --verbose 2>&1 &
     pid=$!
