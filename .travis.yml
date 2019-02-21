@@ -46,7 +46,9 @@ install:
           curl --location "${deps_url}/${_filename}" --output "${_filename}"
           mkdir -p "${HOME}/.cache/compilers"
           printf "Extracting ${_filename}\n"
-          tar -xf "${_filename}" -C "${HOME}/.cache/compilers"
+          [[ "${TRAVIS_OS_NAME}" == "linux" ]] \
+            && tar -xf "${_filename}" -C "${HOME}/.cache/compilers" \
+            || unzip "${_filename}" -d "${_gcc_path}"
           rm "${_filename}"
         fi
       }'
@@ -98,7 +100,7 @@ matrix:
       stage: linux/gcc6
       name: linux.gcc6.py27
       os: linux
-      env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
+      env: gcc_path="${gcc6_path}" gcc_name="gcc6-linux.tar.bz2"
       dist: xenial
       python: 2.7
       language: python
@@ -153,16 +155,11 @@ matrix:
       stage: windows/py
       name: windows/py27
       os: windows
-      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27"
+      env: py_ver=2.7.15 py_pkg_name=python2 py_path="/c/Python27" gcc_path="${gcc6_path}" gcc_name="gcc6-win.zip"
       before_install:
-        - exit 0
         - choco config set cacheLocation ${HOME}/.cache/choco
         - choco install ${py_pkg_name} --version ${py_ver}
         - export "PATH=${py_path}:${py_path}/Scripts/:${PATH}"
-      install:
-        - exit 0
-      script:
-        - exit 0
 
       #    - <<: *windows-vm
       #      name: windows/py35
