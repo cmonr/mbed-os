@@ -73,7 +73,7 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc_path}/bin"
-    ${compile_k64f} --stats-depth=0 --clean 2>&1 \
+    ${compile_k64f} --stats-depth=0 --quiet --clean 2>&1 \
       || ${compile_k64f} --verbose 2>&1
 
 matrix:
