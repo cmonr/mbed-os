@@ -115,11 +115,11 @@ matrix:
 
     ### GCC7 ###
     - <<: *linux-vm
-      name: linux.py27.gcc7
+      name: linux.gcc7.py27
       stage: GCC7
       env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
     - <<: *linux-vm
-      name: linux.py37.gcc7
+      name: linux.gcc7.py37
       stage: GCC7
       env: gcc_path="${gcc7_path}" gcc_archive_name="gcc7-linux.tar.bz2"
 
