@@ -148,11 +148,43 @@ matrix:
     - <<: *windows-vm
       name: windows.gcc6.py35
       env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
-
     - <<: *windows-vm
       name: windows.gcc6.py36
       env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
-
     - <<: *windows-vm
       name: windows.gcc6.py37
       env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc6_path}" gcc_archive_name="gcc6-win.zip"
+
+    - <<: *windows-vm
+      name: windows.gcc7.py27
+      stage: windows/gcc7
+      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc7.py35
+      stage: windows/gcc7
+      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc6.py36
+      stage: windows/gcc7
+      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc7.py37
+      stage: windows/gcc7
+      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc7_path}" gcc_archive_name="gcc7-win.zip"
+
+    - <<: *windows-vm
+      name: windows.gcc8.py27
+      stage: windows/gcc8
+      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc8.py35
+      stage: windows/gcc8
+      env: py_ver=3.5.4 py_pkg_name=python3 py_path="/c/Python35" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc8.py36
+      stage: windows/gcc8
+      env: py_ver=3.6.8 py_pkg_name=python3 py_path="/c/Python36" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
+    - <<: *windows-vm
+      name: windows.gcc8.py37
+      stage: windows/gcc8
+      env: py_ver=3.7.2 py_pkg_name=python3 py_path="/c/Python37" gcc_path="${gcc8_path}" gcc_archive_name="gcc8-win.zip"
