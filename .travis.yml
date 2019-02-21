@@ -100,7 +100,7 @@ matrix:
       stage: linux/gcc6
       name: linux.gcc6.py27
       os: linux
-      env: gcc_path="${gcc6_path}" gcc_name="gcc6-linux.tar.bz2"
+      env: gcc_path="${gcc6_path}" gcc_archive_name="gcc6-linux.tar.bz2"
       dist: xenial
       python: 2.7
       language: python
