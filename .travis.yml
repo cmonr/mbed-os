@@ -73,8 +73,14 @@ script:
 ### Test Compile ###
   - |
     mbed config --global GCC_ARM_PATH "${gcc_path}/bin"
-    ${compile_k64f} --stats-depth=0 --clean &> /dev/null \
-      || ${compile_k64f} --verbose 2>&1
+    ${compile_k64f} --stats-depth=0 --clean &> compile.log \
+      || ${compile_k64f} --verbose 2>&1 &
+    pid=$!
+    while kill -s 0 "${pid}" 2> /dev/null; do
+      < compile.log tail -n1
+      sleep 30
+    done
+
 
 matrix:
   include:
