@@ -93,7 +93,7 @@ script:
     (
       cd "../${long_dir}/mbed-os"
       pwd
-      ${compile_k64f} -n features_storage_filesystem_littlefs_* --clean -vv 2>&1
+      ${compile_k64f} -n features-storage-filesystem-littlefs-* --clean -vv 2>&1
     )
 
 
