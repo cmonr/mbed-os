@@ -75,9 +75,11 @@ script:
 ### Test Compile ###
   - mbed config --global GCC_ARM_PATH "${gcc_path}/bin"
   - |+
-    cd ../
-    mkdir "${long_dir}"
-    cp -r mbed-os "${long_dir}/mbed-os"
+    (
+      cd ../
+      mkdir -p "${long_dir}/mbed-os"
+      cp -r mbed-os/* "${long_dir}/mbed-os/"
+    )
   - |+
     pwd
     ${compile_k64f} --stats-depth=0 --clean &> compile.log \
@@ -88,9 +90,12 @@ script:
       sleep 60
     done
   - |+
-    cd "${long_dir}/mbed-os"
-    pwd
-    ${compile_k64f} --clean --verbose 2>&1
+    (
+      cd "${long_dir}/mbed-os"
+      pwd
+      ${compile_k64f} --clean --verbose 2>&1
+    )
+
 
 
 matrix:
