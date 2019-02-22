@@ -91,7 +91,7 @@ script:
     done
   - |+
     (
-      cd "${long_dir}/mbed-os"
+      cd "../${long_dir}/mbed-os"
       pwd
       ${compile_k64f} --clean --verbose 2>&1
     )
