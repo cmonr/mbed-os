@@ -80,20 +80,20 @@ script:
       mkdir -p "${long_dir}/mbed-os"
       cp -r mbed-os/* "${long_dir}/mbed-os/"
     )
-  - |+
-    pwd
-    ${compile_k64f} --stats-depth=0 --clean &> compile.log \
-      || ${compile_k64f} --verbose 2>&1 &
-    pid=$!
-    while kill -s 0 "${pid}" 2> /dev/null; do
-      < compile.log tail -n1
-      sleep 60
-    done
+    #  - |+
+    #    pwd
+    #    ${compile_k64f} --stats-depth=0 --clean &> compile.log \
+    #      || ${compile_k64f} --verbose 2>&1 &
+    #    pid=$!
+    #    while kill -s 0 "${pid}" 2> /dev/null; do
+    #      < compile.log tail -n1
+    #      sleep 60
+    #    done
   - |+
     (
       cd "../${long_dir}/mbed-os"
       pwd
-      ${compile_k64f} --clean --verbose 2>&1
+      ${compile_k64f} -n features_storage_filesystem_littlefs_* --clean -vv 2>&1
     )
 
 
